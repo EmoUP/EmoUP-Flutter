@@ -23,7 +23,7 @@ Future<String> createUser(LoginData loginData) async {
     })
   );
   dynamic data = jsonDecode(response.body);
-  setUser(data["user_id"]);
+  setUser("uid", data["user_id"]);
   return "";
 }
 
@@ -39,7 +39,7 @@ Future<String> login(LoginData loginData) async {
   );
   dynamic data = jsonDecode(response.body);
   if(data["status"] == true) {
-    setUser(data["_id"]);
+    setUser("uid", data["_id"]);
     return "";
   } else {
     return data["message"];
@@ -59,7 +59,7 @@ completeProfile(User user, String uid) async {
       "birth": user.birth
     })
   );
-  print("comp"+res.statusCode.toString());
+  setUser("name", user.name);
 }
 
 uploadPfp(PlatformFile pfp, String uid) async {
@@ -99,10 +99,19 @@ linkDevice(String device, String uid) async {
   );
 }
 
-setUser(String uid) async {
+Future<User> getUserInfo(String uid) async {
+  Uri url = Uri.parse(server+"/users/"+uid);
+  Response res = await get(
+    url,
+    headers: {
+      "accept": "*/*",
+      'Content-Type': "application/json"
+    },
+  );
+  return User.fromJson(jsonDecode(res.body));
+}
+
+setUser(String param, String value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  if(uid != "")
-    prefs.setString("uid", uid);
-  else
-    prefs.remove("email");
+  prefs.setString(param, value);
 }
