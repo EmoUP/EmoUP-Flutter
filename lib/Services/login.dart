@@ -85,6 +85,20 @@ Future<File> compressAndGetFile(File file, String targetPath) async {
   return result;
 }
 
+linkDevice(String device, String uid) async {
+  Uri url = Uri.parse(server+"/users/"+uid);
+  Response res = await patch(
+    url,
+    headers: {
+      "accept": "*/*",
+      'Content-Type': "application/json"
+    },
+    body: jsonEncode({
+      "device_id": device
+    })
+  );
+}
+
 setUser(String uid) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   if(uid != "")
