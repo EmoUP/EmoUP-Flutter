@@ -1,9 +1,13 @@
 import 'package:emoup/Models/user.dart';
+import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -39,7 +43,8 @@ class _HomeState extends State<Home> {
       setState(() {
         name = curr.name;
         pfp = curr.profilePic;    
-        cache = false;    
+        cache = false;  
+        loading = false;  
       });
     }
   }
@@ -50,10 +55,86 @@ class _HomeState extends State<Home> {
     h = MediaQuery.of(context).size.height;
     return Scaffold(
       drawer: Drawer(
-        child: Column(
+        child: loading ? Center(
+          child: SpinKitWanderingCubes(
+            color: Colors.red,
+            size: 20,
+          )
+        ) : Column(
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(pfp),
+            Container(
+              height: 0.9 * h,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 0.08 * h,
+                  ),
+                  Card(
+                    color: Colors.white,
+                    elevation: 5,
+                    shape: CircleBorder(),
+                    child: CircleAvatar(
+                      radius: 0.1 * h,
+                      backgroundColor: Colors.white,
+                      backgroundImage: NetworkImage(pfp),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 0.02 * h,
+                  ),
+                  Text("Welcome $name !",
+                    style: GoogleFonts.poppins(
+                      fontSize: 22
+                    )
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 0.1 * h,
+              child: Column(
+                children: [
+                  FloatingActionButton.extended(
+                    onPressed: () async {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Do you really want to logout?"),
+                            actions: [
+                              TextButton(
+                                child: Text("No"),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              TextButton(
+                                child: Text("Yes"),
+                                onPressed: () async {
+                                  await prefs.remove("uid");
+                                  navigateToPush(context, Login());
+                                },
+                              )
+                            ],
+                          );
+                        }
+                      );
+                    }, 
+                    label: Text("Logout", style: TextStyle(fontSize: 16, color: Colors.black)),
+                    icon: Icon(Icons.exit_to_app, size: 40, color: Colors.black,),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text("Made with ❤️ by Team Ozone",
+                      style: TextStyle(
+                        color: Colors.grey
+                      ),
+                    )
+                  )
+                ],
+              ),
             )
           ],
         ),
@@ -81,7 +162,9 @@ class _HomeState extends State<Home> {
             print(pfp);
           }, "Music Therapy", Color(0xFFFCD3E1), Color(0xFFF15858), Icons.music_note),
           therapy(() {}, "Inspiration Therapy", Color(0xFFC4E6FF), Color(0xFF2D9AED), Icons.lightbulb),
-          therapy(() {}, "Expression Therapy", Color(0xFFFEDDBA), Color(0xFFE4852C), Icons.message),
+          therapy(() async {
+            await launch(expression);
+          }, "Expression Therapy", Color(0xFFFEDDBA), Color(0xFFE4852C), Icons.message),
           therapy(() {}, "Virtual Forest", Color(0xFFD3EA9C), Color(0xFF75B322), Icons.park),
           Expanded(
             flex: 1,
