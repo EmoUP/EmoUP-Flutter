@@ -4,7 +4,6 @@ import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/const.dart';
 import 'package:emoup/home.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,7 +88,7 @@ class _ProfileState extends State<Profile> {
                           loading = true;                          
                         });
                         await uploadPfp(_upload, uid);
-                        //await completeProfile(user, uid);
+                        await completeProfile(user, uid);
                         setState(() {
                           loading = false;                          
                         });
