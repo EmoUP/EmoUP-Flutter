@@ -1,6 +1,8 @@
 import 'package:emoup/Models/user.dart';
+import 'package:emoup/OnBoarding/profile.dart';
 import 'package:emoup/Services/login.dart';
 import 'package:emoup/const.dart';
+import 'package:emoup/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +18,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   User user = new User();
+  bool newUser = false;
 
   @override
   void initState() {
@@ -51,11 +54,15 @@ class _LoginState extends State<Login> {
         return login(loginData);
       },
       onSignup: (loginData) {
+        setState(() {
+          newUser = true;          
+        });
         return createUser(loginData);
       },
       loginAfterSignUp: true,
       onSubmitAnimationCompleted: () {
-        
+        print(newUser);
+        navigateToPush(context, newUser ? Profile() : Home());
       },
       hideForgotPasswordButton: true,
       onRecoverPassword: null,
