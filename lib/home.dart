@@ -1,6 +1,9 @@
+import 'package:emoup/Models/user.dart';
+import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/const.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -10,141 +13,84 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   double w,h;
+  SharedPreferences prefs;
+  String pfp, name, uid;
+  bool loading = true, cache = true;
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
+  init() async {
+    prefs = await SharedPreferences.getInstance();
+    String temp = prefs.getString("uid");
+    setState(() {
+      uid = temp;      
+    });
+    if(prefs.containsKey("name")) {
+      String temp = prefs.getString("name");
+      setState(() {
+        name = temp;        
+      });
+    } else {
+      User curr = await getUserInfo(uid);
+      setState(() {
+        name = curr.name;
+        pfp = curr.profilePic;    
+        cache = false;    
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            CircleAvatar(
+              backgroundImage: NetworkImage(pfp),
+            )
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Color(0xFF405CC7),
+        title: Text("Therapy",
+          style: GoogleFonts.poppins(
+            fontSize: 24,
+            color: white
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
-          Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              Image.asset("assets/images/header.png", width: w),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 0.07 * h),
-                child: Text("Therapy",
-                  style: GoogleFonts.poppins(
-                    fontSize: 24,
-                    color: white
-                  ),
-                )
-              )
-            ],
+          Card(
+            margin: EdgeInsets.only(bottom: 0.02 * h),
+            elevation: 5,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            child: Image.asset("assets/images/header.png", fit: BoxFit.fill),
           ),
-          GestureDetector(
-            onTap: () {
-
-            },
-            child: Container(
-              height: 0.1 * h,
-              margin: EdgeInsets.all(0.05 * w),
-              padding: EdgeInsets.all(0.05 * w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                color: Color(0xFFFCD3E1)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Music Therapy",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFFF15858),
-                      fontSize: 24
-                    ),
-                  ),
-                  Icon(Icons.music_note, color: Color(0xFFF15858), size: 40,)
-                ],
-              ),
-            )
-          ),
-          GestureDetector(
-            onTap: () {
-
-            },
-            child: Container(
-              height: 0.1 * h,
-              margin: EdgeInsets.all(0.05 * w),
-              padding: EdgeInsets.all(0.05 * w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                color: Color(0xFFC4E6FF)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Inspiration Therapy",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF2D9AED),
-                      fontSize: 24
-                    ),
-                  ),
-                  Icon(Icons.lightbulb, color: Color(0xFF2D9AED), size: 40,)
-                ],
-              ),
-            )
-          ),
-          GestureDetector(
-            onTap: () {
-
-            },
-            child: Container(
-              height: 0.1 * h,
-              margin: EdgeInsets.all(0.05 * w),
-              padding: EdgeInsets.all(0.05 * w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                color: Color(0xFFFEDDBA)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Expression Therapy",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFFE4852C),
-                      fontSize: 24
-                    ),
-                  ),
-                  Icon(Icons.message, color: Color(0xFFE4852C), size: 40,)
-                ],
-              ),
-            )
-          ),
-          GestureDetector(
-            onTap: () {
-
-            },
-            child: Container(
-              height: 0.1 * h,
-              margin: EdgeInsets.all(0.05 * w),
-              padding: EdgeInsets.all(0.05 * w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                color: Color(0xFFD3EA9C)
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Virtual Forest",
-                    style: GoogleFonts.poppins(
-                      color: Color(0xFF75B322),
-                      fontSize: 24
-                    ),
-                  ),
-                  Icon(Icons.park, color: Color(0xFF75B322), size: 40,)
-                ],
-              ),
-            )
-          ),
+          therapy(() {
+            print(pfp);
+          }, "Music Therapy", Color(0xFFFCD3E1), Color(0xFFF15858), Icons.music_note),
+          therapy(() {}, "Inspiration Therapy", Color(0xFFC4E6FF), Color(0xFF2D9AED), Icons.lightbulb),
+          therapy(() {}, "Expression Therapy", Color(0xFFFEDDBA), Color(0xFFE4852C), Icons.message),
+          therapy(() {}, "Virtual Forest", Color(0xFFD3EA9C), Color(0xFF75B322), Icons.park),
           Expanded(
             flex: 1,
             child: Container(
-              margin: EdgeInsets.only(top: 0.05 * h),
+              margin: EdgeInsets.only(top: 0.02 * h),
               height: 0.1 * h,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                color: eblue
+                color: eblue,
               ),
               child: Center(
                 child: Text("Choose your therapy",
@@ -158,6 +104,35 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
+    );
+  }
+
+  therapy(Function fn, String title, Color bg, Color fg, IconData icon) {
+    return GestureDetector(
+      onTap: () {
+        fn();
+      },
+      child: Container(
+        height: 0.1 * h,
+        margin: EdgeInsets.all(0.05 * w),
+        padding: EdgeInsets.all(0.05 * w),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+          color: bg
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(title,
+              style: GoogleFonts.poppins(
+                color: fg,
+                fontSize: 24
+              ),
+            ),
+            Icon(icon, color: fg, size: 40,)
+          ],
+        ),
+      )
     );
   }
 }
