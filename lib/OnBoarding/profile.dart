@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:emoup/Models/user.dart';
+import 'package:emoup/OnBoarding/input.dart';
 import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/const.dart';
-import 'package:emoup/home.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:intl/intl.dart';
@@ -92,7 +92,7 @@ class _ProfileState extends State<Profile> {
                         setState(() {
                           loading = false;                          
                         });
-                        navigateToPush(context, Home());
+                        navigateToPush(context, Input());
                       }, 
                       child: Text("Next", 
                         style: TextStyle(
