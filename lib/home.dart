@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
         ) : Column(
           children: [
             Container(
-              height: 0.9 * h,
+              height: 0.95 * h,
               child: Column(
                 children: [
                   SizedBox(
@@ -76,26 +76,80 @@ class _HomeState extends State<Home> {
                     child: CircleAvatar(
                       radius: 0.1 * h,
                       backgroundColor: Colors.white,
-                      backgroundImage: NetworkImage(pfp),
+                      backgroundImage: FileImage(File(pfp)),
                     ),
                   ),
-                  SizedBox(
-                    height: 0.02 * h,
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 0.04 * h),
+                      child: Text("Welcome $name !",
+                      style: GoogleFonts.poppins(
+                        fontSize: 22
+                      )
+                    ),
                   ),
-                  Text("Welcome $name !",
-                    style: GoogleFonts.poppins(
-                      fontSize: 22
-                    )
+                  ListTile(
+                    contentPadding: EdgeInsets.only(left: 0.2 * w),
+                    title: Text("Reports", style: GoogleFonts.poppins(fontSize: 16)),
+                    leading: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                      child: Icon(Icons.assignment_outlined, size: 40, color: Colors.black),
+                    ),
+                    onTap: () {
+                      
+                    },
                   ),
-                ],
-              ),
-            ),
-            Container(
-              height: 0.1 * h,
-              child: Column(
-                children: [
-                  FloatingActionButton.extended(
-                    onPressed: () async {
+                  ListTile(
+                    contentPadding: EdgeInsets.only(left: 0.2 * w),
+                    title: Text("Doctor", style: GoogleFonts.poppins(fontSize: 16)),
+                    leading: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                      child: Icon(Icons.medical_services_outlined, size: 40, color: Colors.black),
+                    ),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.only(left: 0.2 * w),
+                    title: Text("People", style: GoogleFonts.poppins(fontSize: 16)),
+                    leading: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                      child: Icon(Icons.group_outlined, size: 40, color: Colors.black),
+                    ),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.only(left: 0.2 * w),
+                    title: Text("Settings", style: GoogleFonts.poppins(fontSize: 16)),
+                    leading: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                      child: Icon(Icons.settings_outlined, size: 40, color: Colors.black),
+                    ),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.only(left: 0.2 * w),
+                    title: Text("About", style: GoogleFonts.poppins(fontSize: 16)),
+                    leading: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                      child: Icon(Icons.info_outline, size: 40, color: Colors.black),
+                    ),
+                    onTap: () {
+                      
+                    },
+                  ),
+                  ListTile(
+                    contentPadding: EdgeInsets.only(left: 0.2 * w),
+                    title: Text("Logout", style: GoogleFonts.poppins(fontSize: 16)),
+                    leading: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                      child: Icon(Icons.exit_to_app_outlined, size: 40, color: Colors.black),
+                    ),
+                    onTap: () async {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -120,21 +174,17 @@ class _HomeState extends State<Home> {
                         }
                       );
                     }, 
-                    label: Text("Logout", style: TextStyle(fontSize: 16, color: Colors.black)),
-                    icon: Icon(Icons.exit_to_app, size: 40, color: Colors.black,),
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text("Made with ❤️ by Team Ozone",
-                      style: TextStyle(
-                        color: Colors.grey
-                      ),
-                    )
-                  )
                 ],
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Text("Made with ❤️ by Team Ozone",
+                style: TextStyle(
+                  color: Colors.grey
+                ),
+              )
             )
           ],
         ),
