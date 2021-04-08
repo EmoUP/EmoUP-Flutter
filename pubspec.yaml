@@ -1,7 +1,7 @@
 name: emoup
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -21,6 +21,8 @@ dependencies:
   url_launcher: ^6.0.3
   path_provider: ^2.0.1
   maps_launcher: ^2.0.0
+  chips_choice: ^2.0.1
+  stacked_card_carousel: ^0.0.2+1
 
 dev_dependencies:
   flutter_test:

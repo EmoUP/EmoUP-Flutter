@@ -1,6 +1,7 @@
 import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
+import 'package:emoup/Therapies/inspiration.dart';
 import 'package:emoup/const.dart';
 import 'package:emoup/doctor.dart';
 import 'package:flutter/material.dart';
@@ -226,7 +227,9 @@ class _HomeState extends State<Home> {
           therapy(() {
             print(pfp);
           }, "Music Therapy", Color(0xFFFCD3E1), Color(0xFFF15858), Icons.music_note),
-          therapy(() {}, "Inspiration Therapy", Color(0xFFC4E6FF), Color(0xFF2D9AED), Icons.lightbulb),
+          therapy(() {
+            navigateTo(context, InspirationTherapy());
+          }, "Inspiration Therapy", Color(0xFFC4E6FF), Color(0xFF2D9AED), Icons.lightbulb),
           therapy(() async {
             await launch(expression);
           }, "Expression Therapy", Color(0xFFFEDDBA), Color(0xFFE4852C), Icons.message),
