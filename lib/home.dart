@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 class Home extends StatefulWidget {
   @override
@@ -19,7 +21,7 @@ class _HomeState extends State<Home> {
   double w,h;
   SharedPreferences prefs;
   String pfp, name, uid;
-  bool loading = true, cache = true;
+  bool loading = true;
 
   @override
   void initState() {
@@ -30,21 +32,30 @@ class _HomeState extends State<Home> {
   init() async {
     prefs = await SharedPreferences.getInstance();
     String temp = prefs.getString("uid");
+    String temp1 = prefs.getString("name");
     setState(() {
-      uid = temp;      
+      uid = temp;
+      name = temp1;      
     });
-    if(prefs.containsKey("name")) {
-      String temp = prefs.getString("name");
+    if(prefs.containsKey("pfp")) {
+      String temp = prefs.getString("pfp");
       setState(() {
-        name = temp;        
+        pfp = temp;     
+        loading = false;   
       });
     } else {
       User curr = await getUserInfo(uid);
+      var response = await get(Uri.parse(curr.profilePic));
+      var documentDirectory = await getApplicationDocumentsDirectory();
+      var firstPath = documentDirectory.path;
+      var filePathAndName = documentDirectory.path + '/pfp.jpg'; 
+      await Directory(firstPath).create(recursive: true); 
+      File file2 = new File(filePathAndName);   
+      file2.writeAsBytesSync(response.bodyBytes);  
+      await prefs.setString("pfp", filePathAndName);
       setState(() {
-        name = curr.name;
-        pfp = curr.profilePic;    
-        cache = false;  
-        loading = false;  
+        pfp = filePathAndName;
+        loading = false;
       });
     }
   }
