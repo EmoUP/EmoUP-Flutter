@@ -2,6 +2,7 @@ import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/const.dart';
+import 'package:emoup/doctor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -119,7 +120,7 @@ class _HomeState extends State<Home> {
                         child: Icon(Icons.medical_services_outlined, size: 40),
                       ),
                       onTap: () {
-                        
+                        navigateTo(context, Doctor());
                       },
                     ),
                     ListTile(
