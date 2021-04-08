@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
                     title: Text("Reports", style: GoogleFonts.poppins(fontSize: 16)),
                     leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.assignment_outlined, size: 40, color: Colors.black),
+                      child: Icon(Icons.assignment_outlined, size: 40),
                     ),
                     onTap: () {
                       
@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                     title: Text("Doctor", style: GoogleFonts.poppins(fontSize: 16)),
                     leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.medical_services_outlined, size: 40, color: Colors.black),
+                      child: Icon(Icons.medical_services_outlined, size: 40),
                     ),
                     onTap: () {
                       
@@ -125,7 +125,7 @@ class _HomeState extends State<Home> {
                     title: Text("People", style: GoogleFonts.poppins(fontSize: 16)),
                     leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.group_outlined, size: 40, color: Colors.black),
+                      child: Icon(Icons.group_outlined, size: 40),
                     ),
                     onTap: () {
                       
@@ -136,7 +136,7 @@ class _HomeState extends State<Home> {
                     title: Text("Settings", style: GoogleFonts.poppins(fontSize: 16)),
                     leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.settings_outlined, size: 40, color: Colors.black),
+                      child: Icon(Icons.settings_outlined, size: 40),
                     ),
                     onTap: () {
                       
@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
                     title: Text("About", style: GoogleFonts.poppins(fontSize: 16)),
                     leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.info_outline, size: 40, color: Colors.black),
+                      child: Icon(Icons.info_outline, size: 40),
                     ),
                     onTap: () {
                       
@@ -158,7 +158,7 @@ class _HomeState extends State<Home> {
                     title: Text("Logout", style: GoogleFonts.poppins(fontSize: 16)),
                     leading: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.exit_to_app_outlined, size: 40, color: Colors.black),
+                      child: Icon(Icons.exit_to_app_outlined, size: 40),
                     ),
                     onTap: () async {
                       showDialog(

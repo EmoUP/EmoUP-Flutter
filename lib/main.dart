@@ -46,6 +46,8 @@ class _WasterageState extends State<Wasterage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       home: Scaffold(
         backgroundColor: Colors.white,
         body: loading ? Center(
