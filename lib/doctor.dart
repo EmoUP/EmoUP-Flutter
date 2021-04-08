@@ -2,6 +2,7 @@ import 'package:emoup/Services/doctor.dart';
 import 'package:emoup/const.dart';
 import 'package:flutter/material.dart';
 import 'package:emoup/Models/Doctor.dart' as Doc;
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
@@ -14,6 +15,7 @@ class _DoctorState extends State<Doctor> {
 
   List<Doc.Doctor> lst;
   double w,h;
+  bool loading = true;
 
   @override
   void initState() {
@@ -24,9 +26,9 @@ class _DoctorState extends State<Doctor> {
   init() async {
     List<Doc.Doctor> temp = await getDoctors();
     setState(() {
-      lst = temp;      
+      lst = temp;  
+      loading = false;    
     });
-    print(lst.length);
   }
 
   @override
@@ -45,7 +47,12 @@ class _DoctorState extends State<Doctor> {
         ),
         centerTitle: true,
       ),
-      body: Column(
+      body: loading ? Center(
+          child: SpinKitWanderingCubes(
+            color: Colors.red,
+            size: 20,
+          )
+        ) : Column(
         children: [
           Card(
             margin: EdgeInsets.only(bottom: 0.02 * h),
