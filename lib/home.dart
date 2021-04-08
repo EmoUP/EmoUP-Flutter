@@ -265,7 +265,10 @@ class _HomeState extends State<Home> {
         padding: EdgeInsets.all(0.05 * w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: bg
+          color: bg,
+          boxShadow: [
+            new BoxShadow(color: bg, blurRadius: 15.0, spreadRadius: 2),
+          ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
