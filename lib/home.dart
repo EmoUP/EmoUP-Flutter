@@ -65,139 +65,142 @@ class _HomeState extends State<Home> {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
     return Scaffold(
-      drawer: Drawer(
-        child: loading ? Center(
-          child: SpinKitWanderingCubes(
-            color: Colors.red,
-            size: 20,
-          )
-        ) : Column(
-          children: [
-            Container(
-              height: 0.95 * h,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 0.08 * h,
-                  ),
-                  Card(
-                    color: Colors.white,
-                    elevation: 5,
-                    shape: CircleBorder(),
-                    child: CircleAvatar(
-                      radius: 0.1 * h,
-                      backgroundColor: Colors.white,
-                      backgroundImage: FileImage(File(pfp)),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 0.04 * h),
-                      child: Text("Welcome $name !",
-                      style: GoogleFonts.poppins(
-                        fontSize: 22
-                      )
-                    ),
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.only(left: 0.2 * w),
-                    title: Text("Reports", style: GoogleFonts.poppins(fontSize: 16)),
-                    leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.assignment_outlined, size: 40),
-                    ),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.only(left: 0.2 * w),
-                    title: Text("Doctor", style: GoogleFonts.poppins(fontSize: 16)),
-                    leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.medical_services_outlined, size: 40),
-                    ),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.only(left: 0.2 * w),
-                    title: Text("People", style: GoogleFonts.poppins(fontSize: 16)),
-                    leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.group_outlined, size: 40),
-                    ),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.only(left: 0.2 * w),
-                    title: Text("Settings", style: GoogleFonts.poppins(fontSize: 16)),
-                    leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.settings_outlined, size: 40),
-                    ),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.only(left: 0.2 * w),
-                    title: Text("About", style: GoogleFonts.poppins(fontSize: 16)),
-                    leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.info_outline, size: 40),
-                    ),
-                    onTap: () {
-                      
-                    },
-                  ),
-                  ListTile(
-                    contentPadding: EdgeInsets.only(left: 0.2 * w),
-                    title: Text("Logout", style: GoogleFonts.poppins(fontSize: 16)),
-                    leading: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                      child: Icon(Icons.exit_to_app_outlined, size: 40),
-                    ),
-                    onTap: () async {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text("Do you really want to logout?"),
-                            actions: [
-                              TextButton(
-                                child: Text("No"),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              TextButton(
-                                child: Text("Yes"),
-                                onPressed: () async {
-                                  await prefs.remove("uid");
-                                  navigateToPush(context, Login());
-                                },
-                              )
-                            ],
-                          );
-                        }
-                      );
-                    }, 
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Text("Made with ❤️ by Team Ozone",
-                style: TextStyle(
-                  color: Colors.grey
-                ),
-              )
+      drawer: ClipRRect(
+        borderRadius: BorderRadius.horizontal(right: Radius.circular(20)),
+        child: Drawer(
+          child: loading ? Center(
+            child: SpinKitWanderingCubes(
+              color: Colors.red,
+              size: 20,
             )
-          ],
+          ) : Column(
+            children: [
+              Container(
+                height: 0.95 * h,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 0.08 * h,
+                    ),
+                    Card(
+                      color: Colors.white,
+                      elevation: 5,
+                      shape: CircleBorder(),
+                      child: CircleAvatar(
+                        radius: 0.1 * h,
+                        backgroundColor: Colors.white,
+                        backgroundImage: FileImage(File(pfp)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 0.04 * h),
+                        child: Text("Welcome $name !",
+                        style: GoogleFonts.poppins(
+                          fontSize: 22
+                        )
+                      ),
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0.2 * w),
+                      title: Text("Reports", style: GoogleFonts.poppins(fontSize: 16)),
+                      leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                        child: Icon(Icons.assignment_outlined, size: 40),
+                      ),
+                      onTap: () {
+                        
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0.2 * w),
+                      title: Text("Doctor", style: GoogleFonts.poppins(fontSize: 16)),
+                      leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                        child: Icon(Icons.medical_services_outlined, size: 40),
+                      ),
+                      onTap: () {
+                        
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0.2 * w),
+                      title: Text("People", style: GoogleFonts.poppins(fontSize: 16)),
+                      leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                        child: Icon(Icons.group_outlined, size: 40),
+                      ),
+                      onTap: () {
+                        
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0.2 * w),
+                      title: Text("Settings", style: GoogleFonts.poppins(fontSize: 16)),
+                      leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                        child: Icon(Icons.settings_outlined, size: 40),
+                      ),
+                      onTap: () {
+                        
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0.2 * w),
+                      title: Text("About", style: GoogleFonts.poppins(fontSize: 16)),
+                      leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                        child: Icon(Icons.info_outline, size: 40),
+                      ),
+                      onTap: () {
+                        
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.only(left: 0.2 * w),
+                      title: Text("Logout", style: GoogleFonts.poppins(fontSize: 16)),
+                      leading: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
+                        child: Icon(Icons.exit_to_app_outlined, size: 40),
+                      ),
+                      onTap: () async {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text("Do you really want to logout?"),
+                              actions: [
+                                TextButton(
+                                  child: Text("No"),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                                TextButton(
+                                  child: Text("Yes"),
+                                  onPressed: () async {
+                                    await prefs.remove("uid");
+                                    navigateToPush(context, Login());
+                                  },
+                                )
+                              ],
+                            );
+                          }
+                        );
+                      }, 
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text("Made with ❤️ by Team Ozone",
+                  style: TextStyle(
+                    color: Colors.grey
+                  ),
+                )
+              )
+            ],
+          ),
         ),
       ),
       appBar: AppBar(
