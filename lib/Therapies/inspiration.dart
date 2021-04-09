@@ -3,29 +3,30 @@ import 'package:emoup/const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 
 class InspirationTherapy extends StatefulWidget {
+
+  final String uid;
+  InspirationTherapy({this.uid});
   @override
   _InspirationTherapyState createState() => _InspirationTherapyState();
 }
 
 List<String> images = [];
-SharedPreferences prefs;
 double w, h;
 
 class _InspirationTherapyState extends State<InspirationTherapy> {
   bool loading = true;
+
+  @override
   void initState() {
     super.initState();
     init();
   }
 
   init() async {
-    prefs = await SharedPreferences.getInstance();
-    String uid = prefs.getString("uid");
-    List<String> lst = await getImages(uid);
+    List<String> lst = await getImages(widget.uid);
     setState(() {
       images = lst;
       loading = false;

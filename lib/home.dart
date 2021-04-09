@@ -228,7 +228,7 @@ class _HomeState extends State<Home> {
             print(pfp);
           }, "Music Therapy", Color(0xFFFCD3E1), Color(0xFFF15858), Icons.music_note),
           therapy(() {
-            navigateTo(context, InspirationTherapy());
+            navigateTo(context, InspirationTherapy(uid: uid));
           }, "Inspiration Therapy", Color(0xFFC4E6FF), Color(0xFF2D9AED), Icons.lightbulb),
           therapy(() async {
             await launch(expression);
