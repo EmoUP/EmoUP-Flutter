@@ -23,6 +23,10 @@ dependencies:
   maps_launcher: ^2.0.0
   chips_choice: ^2.0.1
   stacked_card_carousel: ^0.0.2+1
+  syncfusion_flutter_charts: ^19.1.55+1
+  firebase_storage: ^8.0.3
+  cloud_firestore: ^1.0.4
+  firebase_core: ^1.0.3
 
 dev_dependencies:
   flutter_test:

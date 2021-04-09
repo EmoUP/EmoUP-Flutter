@@ -3,6 +3,7 @@ import 'package:emoup/home.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,8 +38,10 @@ class _WasterageState extends State<Wasterage> {
         login = true;        
       });
     }
-    setState(() {
-      loading = false;      
+    Firebase.initializeApp().whenComplete(() {
+      setState(() {
+        loading = false;
+      });
     });
   }
 
