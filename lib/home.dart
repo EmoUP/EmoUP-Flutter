@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:emoup/people.dart';
 import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
@@ -132,7 +135,7 @@ class _HomeState extends State<Home> {
                         child: Icon(Icons.group_outlined, size: 40),
                       ),
                       onTap: () {
-                        
+                        navigateTo(context, People(uid: uid, name: name));
                       },
                     ),
                     ListTile(
