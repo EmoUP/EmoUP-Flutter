@@ -40,6 +40,8 @@ Future<String> login(LoginData loginData) async {
   dynamic data = jsonDecode(response.body);
   if(data["status"] == true) {
     setUser("uid", data["_id"]);
+    User usr = await getUserInfo(data["_id"]);
+    setUser("name", usr.name);
     return "";
   } else {
     return data["message"];
