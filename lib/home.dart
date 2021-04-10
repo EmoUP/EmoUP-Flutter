@@ -1,4 +1,7 @@
 import 'package:emoup/DrawerItems.dart/about.dart';
+import 'package:emoup/DrawerItems.dart/addNote.dart';
+import 'package:emoup/DrawerItems.dart/displayNote.dart';
+import 'package:emoup/DrawerItems.dart/people.dart';
 import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
@@ -134,7 +137,22 @@ class _HomeState extends State<Home> {
                                   EdgeInsets.symmetric(horizontal: 0.025 * w),
                               child: Icon(Icons.group_outlined, size: 40),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                              navigateTo(context, People());
+                            },
+                          ),
+                          ListTile(
+                            contentPadding: EdgeInsets.only(left: 0.2 * w),
+                            title: Text("Add Note",
+                                style: GoogleFonts.poppins(fontSize: 16)),
+                            leading: Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: 0.025 * w),
+                              child: Icon(Icons.note_outlined, size: 40),
+                            ),
+                            onTap: () {
+                              navigateTo(context, DisplayNotes());
+                            },
                           ),
                           ListTile(
                             contentPadding: EdgeInsets.only(left: 0.2 * w),

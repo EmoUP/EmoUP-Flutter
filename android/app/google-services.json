@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "47161907478",
+    "project_id": "emoup-294814",
+    "storage_bucket": "emoup-294814.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47161907478:android:9ad4a7ee6a1444fe43d837",
+        "android_client_info": {
+          "package_name": "com.example.emoup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "47161907478-7ksuvlhkfh473kp6g3c5u82o4urtahg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0agkyNTLSpq12MlN1w8BmlmY5THEwf64"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "47161907478-7ksuvlhkfh473kp6g3c5u82o4urtahg3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
