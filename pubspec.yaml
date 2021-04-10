@@ -29,6 +29,13 @@ dependencies:
   firebase_core: ^1.0.3
   encrypt: ^5.0.0
   smooth_page_indicator: ^0.2.3
+  des_plugin: ^0.0.3
+  audioplayers: ^0.18.2
+  back_button_interceptor: ^5.0.0
+  audio_session: ^0.1.0
+  rxdart: ^0.26.0
+  just_audio: ^0.7.2
+  swipedetector: ^1.2.0
 
 dev_dependencies:
   flutter_test:

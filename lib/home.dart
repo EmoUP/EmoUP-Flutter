@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:emoup/Therapies/music.dart';
 import 'package:emoup/people.dart';
 import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
@@ -229,7 +230,7 @@ class _HomeState extends State<Home> {
             child: Image.asset("assets/images/header.png", fit: BoxFit.fill),
           ),
           therapy(() {
-            print(pfp);
+            navigateTo(context, MusicTherapy(uid: uid));
           }, "Music Therapy", Color(0xFFFCD3E1), Color(0xFFF15858), Icons.music_note),
           therapy(() {
             navigateTo(context, InspirationTherapy(uid: uid));
