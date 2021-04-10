@@ -1,3 +1,4 @@
+import 'package:emoup/Drawer/about.dart';
 import 'package:emoup/Therapies/music.dart';
 import 'package:emoup/Drawer/people.dart';
 import 'package:emoup/Models/user.dart';
@@ -157,7 +158,7 @@ class _HomeState extends State<Home> {
                         child: Icon(Icons.info_outline, size: 40),
                       ),
                       onTap: () {
-                        
+                        navigateTo(context, About());
                       },
                     ),
                     ListTile(
