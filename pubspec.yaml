@@ -28,6 +28,7 @@ dependencies:
   cloud_firestore: ^1.0.4
   firebase_core: ^1.0.3
   encrypt: ^5.0.0
+  smooth_page_indicator: ^0.2.3
 
 dev_dependencies:
   flutter_test:

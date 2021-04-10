@@ -7,6 +7,7 @@ import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/Therapies/inspiration.dart';
 import 'package:emoup/const.dart';
 import 'package:emoup/doctor.dart';
+import 'package:emoup/report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -113,7 +114,7 @@ class _HomeState extends State<Home> {
                         child: Icon(Icons.assignment_outlined, size: 40),
                       ),
                       onTap: () {
-                        
+                        navigateTo(context, Report(uid: uid, pfp: FileImage(File(pfp))));
                       },
                     ),
                     ListTile(
