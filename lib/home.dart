@@ -1,10 +1,12 @@
 import 'package:emoup/Drawer/about.dart';
+import 'package:emoup/Drawer/notes.dart';
 import 'package:emoup/Therapies/music.dart';
 import 'package:emoup/Drawer/people.dart';
 import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/Therapies/inspiration.dart';
+import 'package:emoup/Therapies/video.dart';
 import 'package:emoup/const.dart';
 import 'package:emoup/Drawer/doctor.dart';
 import 'package:emoup/Drawer/report.dart';
@@ -141,17 +143,6 @@ class _HomeState extends State<Home> {
                     ),
                     ListTile(
                       contentPadding: EdgeInsets.only(left: 0.2 * w),
-                      title: Text("Settings", style: GoogleFonts.poppins(fontSize: 16)),
-                      leading: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
-                        child: Icon(Icons.settings_outlined, size: 40),
-                      ),
-                      onTap: () {
-                        
-                      },
-                    ),
-                    ListTile(
-                      contentPadding: EdgeInsets.only(left: 0.2 * w),
                       title: Text("About", style: GoogleFonts.poppins(fontSize: 16)),
                       leading: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 0.025 * w),
@@ -237,7 +228,9 @@ class _HomeState extends State<Home> {
           therapy(() async {
             await launch(expression);
           }, "Expression Therapy", Color(0xFFFEDDBA), Color(0xFFE4852C), Icons.message),
-          therapy(() {}, "Virtual Forest", Color(0xFFD3EA9C), Color(0xFF75B322), Icons.park),
+          therapy(() {
+            navigateTo(context, VideoTherapy());
+          }, "Virtual Forest", Color(0xFFD3EA9C), Color(0xFF75B322), Icons.park),
           Expanded(
             flex: 1,
             child: Container(
