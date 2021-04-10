@@ -1,14 +1,12 @@
-import 'dart:convert';
-
 import 'package:emoup/Therapies/music.dart';
-import 'package:emoup/people.dart';
+import 'package:emoup/Drawer/people.dart';
 import 'package:emoup/Models/user.dart';
 import 'package:emoup/OnBoarding/login.dart';
 import 'package:emoup/Services/userOps.dart';
 import 'package:emoup/Therapies/inspiration.dart';
 import 'package:emoup/const.dart';
-import 'package:emoup/doctor.dart';
-import 'package:emoup/report.dart';
+import 'package:emoup/Drawer/doctor.dart';
+import 'package:emoup/Drawer/report.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
