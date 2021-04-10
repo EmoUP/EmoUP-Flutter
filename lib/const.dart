@@ -22,7 +22,7 @@ mapGen(int color) {
   return res;
 }
 
-final server = "http://13.68.249.56:5000";
+final server = "http://52.188.203.118:5000";
 
 void navigateTo(BuildContext context, Widget destination) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
